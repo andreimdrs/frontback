@@ -22,8 +22,8 @@
     },
   
     "postStartCommand": {
-      "start_frontend": "cd /app/frontend && npm run dev &", // Inicia o frontend em background
-      "start_backend": "cd /app/backend && uvicorn main:app --host 0.0.0.0 --port 8000 --reload &" // Inicia o backend em background
+      "start_frontend": "cd /app/frontend && npm run dev &",
+      "start_backend": "cd /app/backend && uvicorn main:app --host 0.0.0.0 --port 8000 --reload &"
     },
     "shutdownAction": "stopContainer"
   }
