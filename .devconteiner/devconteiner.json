@@ -1,0 +1,29 @@
+{
+    "name": "Full-Stack Development (React/Vite + FastAPI)",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "frontend", 
+    "workspaceFolder": "/app/frontend", 
+  
+    "customizations": {
+      "vscode": {
+        "extensions": [
+          "dbaeumer.vscode-eslint",
+          "esbenp.prettier-vscode",
+          "ms-python.python",
+          "ms-python.vscode-pylance"
+        ]
+      }
+    },
+    "forwardPorts": [5173, 8000],
+  
+    "postCreateCommand": {
+      "frontend_install": "cd /app/frontend && npm install",
+      "backend_install": "cd /app/backend && pip install -r requirements.txt"
+    },
+  
+    "postStartCommand": {
+      "start_frontend": "cd /app/frontend && npm run dev &", // Inicia o frontend em background
+      "start_backend": "cd /app/backend && uvicorn main:app --host 0.0.0.0 --port 8000 --reload &" // Inicia o backend em background
+    },
+    "shutdownAction": "stopContainer"
+  }
