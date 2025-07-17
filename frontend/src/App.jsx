@@ -1,5 +1,5 @@
 import React from 'react';
-import Tratamento from './components/Tratamento';
+import Tratamento from './components/TratamentoDados';
 import NameTable from './components/NameTable';
 import UsernameTable from './components/UsernameTable';
 import CityTable from './components/CityTable';

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const Tratamento = () => {
+const TratamentoDados = () => {
   // Estados para os dados
   const [nomes, setNomes] = useState([]);
   const [usernames, setUsernames] = useState([]);
@@ -53,4 +53,4 @@ const Tratamento = () => {
   });
 };
 
-export default Tratamento
+export default TratamentoDados
