@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  # Serviço para o seu backend FastAPI
+  backend:
+    build:
+      context: ../backend # Caminho para a pasta backend em relação a .devcontainer
+      dockerfile: Dockerfile # Opcional: Nome do Dockerfile se for diferente de "Dockerfile"
+    ports:
+      - "8000:8000" # Mapeia a porta 8000 do contêiner para a porta 8000 do Codespace
+    volumes:
+      - ../backend:/app # Monta o código do backend para hot-reloading
+    working_dir: /app
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    # Adapte 'main:app' se seu arquivo FastAPI for diferente
+
+  # Serviço para o seu frontend React/Vite
+  frontend:
+    build:
+      context: ../frontend # Caminho para a pasta frontend em relação a .devcontainer
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173" # Mapeia a porta 5173 do contêiner para a porta 5173 do Codespace
+    volumes:
+      - ../frontend:/app
+      - /app/node_modules # Evita que o node_modules local (fora do contêiner) sobrescreva o do contêiner
+    working_dir: /app
+    command: npm run dev
+    # O frontend pode depender do backend para garantir que o backend esteja ativo primeiro
+    depends_on:
+      - backend
